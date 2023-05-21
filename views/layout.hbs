@@ -9,17 +9,32 @@
 
   <body>
     <header>
-      <nav>
-        <a href="/"><img
-            src="https://res.cloudinary.com/dxeoy1wnz/image/upload/v1684586991/logo%20et%20fond%20d%27%C3%A9cran/logo-fotor-bg-remover-20230517231348_e1alwk.png"
-          /></a>
-        <a href="/user">Mon profil</a>
-        <a href="/panier">Panier</a>
+      <nav class="barredestaches">
+        <div class="logo">
+          <a href="/">
+            <img
+              src="https://res.cloudinary.com/dxeoy1wnz/image/upload/v1684586991/logo%20et%20fond%20d%27%C3%A9cran/logo-fotor-bg-remover-20230517231348_e1alwk.png"
+            />
+          </a>
+        </div>
+        <div class="menu">
+          <button class="menubtn">Menu</button>
+          <div class="sousmenu">
+            <a href="/calendrier">Calendrier</a>
+            <a href="/commande">Commande</a>
+          </div>
+        </div>
+        <div class="userpanier">
+          <a href="/user">Mon profil</a>
+          <a href="/panier">Panier</a>
+        </div>
+
       </nav>
+
     </header>
     {{{body}}}
     <footer>
-      <div id="contact">
+      <div class="contact">
         <p>©NTB Primeurs – tous droits réservés •</p>
         <a href="/contact">contact</a>
       </div>
