@@ -11,58 +11,60 @@ body {
 
 .barredestaches {
     display: flex;
-    border: 2px solid rgb(0, 0, 0);
-    /* align-items: center;
-} */
+    border: 1px solid rgb(0, 0, 0);
+    align-items: center;
+}
 
-    .contact {
-        display: flex;
-        border: 2px solid rgb(0, 0, 0);
-    }
+.contact {
+    display: flex;
+    border: 1px solid rgb(0, 0, 0);
+}
 
-    /* ********************* menu deroulant ************************ */
-    .menubtn {
-        background-color: #a0f7a0;
-        color: rgb(0, 0, 0);
-        border: none;
-        cursor: pointer;
-        padding: 20px;
-        margin-top: 20px;
-    }
+/* ********************* menu deroulant ************************ */
+.menubtn {
+    background-color: rgb(169, 255, 158);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+}
 
-    .menubtn:hover {
-        background-color: #dd1721;
-    }
+.menubtn:hover {
+    background-color: #7feb7f;
+}
 
-    .menu {
-        position: relative;
-        display: inline-block;
-    }
+.menu {
+    position: relative;
+    display: inline-block;
 
-    .sousmenu {
-        display: none;
-        background-color: #82f182;
-        min-width: 200px;
-        position: relative;
-    }
+}
 
-    .sousmenu a {
-        /* color: rgb(0, 0, 0); */
-        padding: 20px;
-        text-decoration: none;
-        display: block;
+.sousmenu {
+    display: none;
+    background-color: rgb(109, 167, 101);
+    min-width: 200px;
+    position: absolute;
+}
 
-    }
+.sousmenu a {
+    color: rgb(190, 39, 39);
+    padding: 20px;
+    text-decoration: none;
+    display: block;
 
-    .menu:hover .sousmenu {
-        display: block;
-    }
+}
 
-    /* ***************************** LOGO *********************** */
-    .logo {
-        margin-right: auto;
-    }
+.menu:hover .sousmenu {
+    display: block;
+}
 
-    .logo img {
-        width: 15%;
-    }
+/* ***************************** LOGO *********************** */
+.logo {
+    margin-right: auto;
+}
+
+.logo img {
+    width: 15%;
+
+}
