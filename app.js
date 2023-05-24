@@ -8,6 +8,9 @@ app.use(express.static("public"));
 //hbs
 app.set("view engine", "hbs");
 
+//connect to the database
+require("./db");
+
 //require routes
 const indexRoutes = require("./routes/index.routes.js");
 const authRoutes = require("./routes/auth.routes.js");
