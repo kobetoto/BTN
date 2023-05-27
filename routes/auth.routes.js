@@ -48,4 +48,33 @@ router.post("/login", function (req, res, next) {
 router.get("/userPage", function (req, res, next) {
   res.render("userPage");
 });
+
+
+// GET/ userPage
+
+router.get('/user', (req, res) => res.render('users/userpage'));
+router.get('/useredit', (req, res) => res.render('auth/useredit'));
+
+
+// GET/ contact
+
+router.get('/contact', (req, res) => res.render('auth/contact'));
+
+// GET/ calendrier
+
+router.get('/calendrier', (req, res) => res.render('auth/calendrier'));
+
+//GET/ commande
+
+router.get('/commande', (req, res) => res.render('auth/commande'));
+
+// GET / panier
+
+router.get('/panier', (req, res) => res.render('auth/panier'));
+
+// GET / fiche produits
+
+router.get('/ficheproduit', (req, res) => res.render('auth/ficheProduits'));
+
+
 module.exports = router; //exporte le dossier
