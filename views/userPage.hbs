@@ -1,7 +1,13 @@
-<h1>USER PAGE</h1>
-
 {{#if email}}
-  <h2>hello {{email}}</h2>
+  <h1>hello {{email}}</h1>
 {{else}}
-  <h2>No user</h2>
+  <h1>No user</h1>
 {{/if}}
+
+<h3>Nom de l'entreprise:{{entreprise}}</h3>
+<p>adresse: {{adresse}}</p>
+<p>Ville: {{ville}}</p>
+<p>tel: {{tel}}</p>
+
+<a href="/">Edit</a>
+<a href="/logout">Deconnexion</a>
