@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 //creation du model PRODUCT
 const productSchema = new Schema(
@@ -14,4 +14,6 @@ const productSchema = new Schema(
 );
 
 //exportation du model ORDER
-module.exports = mongoose.model("product", productSchema);
+const User = model("product", productSchema);
+
+module.exports = User;
