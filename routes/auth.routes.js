@@ -20,7 +20,7 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.post("/signup", function (req, res, next) {
-  console.log("SIGNUP ===> req.body ===>", req.body);
+  //console.log("SIGNUP ===> req.body ===>", req.body);
 
   const passwordhash = bcryptjs.hashSync(req.body.password, salt);
 
@@ -30,7 +30,7 @@ router.post("/signup", function (req, res, next) {
   })
     .save()
     .then(function (newUserFromDB) {
-      res.render("users/userPage", { email: req.body.email });
+      res.redirect("/login");
     })
     .catch((err) =>
       console.log("err lors de la sauvegarde de l'user dans la DB", err)
@@ -39,7 +39,6 @@ router.post("/signup", function (req, res, next) {
 
 //login GET/POST
 router.get("/login", function (req, res, next) {
-  console.log("req.session ===>", req.session);
   res.render("login");
 });
 
@@ -51,9 +50,7 @@ router.post("/login", function (req, res, next) {
       if (userFromDB) {
         if (bcryptjs.compareSync(req.body.password, userFromDB.password)) {
           req.session.currentUser = userFromDB; //casier utilisateur
-          res.render("users/userPage", {
-            email: req.body.email,
-          });
+          res.redirect("/userPage");
         } else {
           console.log("WRONG ===> username || email || password");
           res.redirect("/login");
@@ -65,16 +62,18 @@ router.post("/login", function (req, res, next) {
     .catch((err) => console.log("err login", err));
 });
 
+// GET/ userPage
 router.get("/userPage", function (req, res, next) {
+  console.log("userPAge req.sessID", req.session.currentUser._id);
   if (req.session.currentUser) {
-    User.findById(req.session.currentUser.id)
+    User.findById(req.session.currentUser._id)
       .then(function (userFromDB) {
         res.render("users/userPage", {
-          email: req.session.currentUser.email,
-          entreprise: req.session.currentUser.nomEntreprise,
-          adresse: req.session.currentUser.adressePostale,
-          ville: req.session.currentUser.ville,
-          tel: req.session.currentUser.telephone,
+          email: userFromDB.email, //userFromDB attention
+          entreprise: userFromDB.nomEntreprise,
+          adresse: userFromDB.adressePostale,
+          ville: userFromDB.ville,
+          tel: userFromDB.telephone,
         });
       })
       .catch();
@@ -83,20 +82,22 @@ router.get("/userPage", function (req, res, next) {
   }
 });
 
-// GET/ userPage
-
-router.get("/userPage", function (req, res, next) {
-  res.render("users/userPage", {
-    email: req.session.currentUser.email,
-    entreprise: req.session.currentUser.nomEntreprise,
-    adresse: req.session.currentUser.adresse,
-  });
-});
-
 //GET POST/ UserEdit
 router.get("/user/edit", function (req, res, next) {
   //User.find... pour pre remplire les champs du User
-  res.render("users/userEdit");
+  console.log("coucou");
+  res.render("users/userEdit", {});
+  /*User.findOne({ email: req.session.currentUser.email })
+    .then(function (userFromDB) {
+      res.render("users/userPage", {
+        email: req.session.currentUser.email,
+        entreprise: req.session.currentUser.nomEntreprise,
+        adresse: req.session.currentUser.adressePostale,
+        ville: req.session.currentUser.ville,
+        tel: req.session.currentUser.telephone,
+      });
+    })
+    .catch();*/
 });
 
 router.post("/user/edit", function (req, res, next) {
@@ -109,13 +110,7 @@ router.post("/user/edit", function (req, res, next) {
       telephone: req.body.telephone,
     })
       .then(function (userFromDB) {
-        res.render("users/userPage", {
-          email: req.body.email,
-          entreprise: req.body.entreprise,
-          adresse: req.body.adresse,
-          ville: req.body.ville,
-          tel: req.body.telephone,
-        });
+        res.redirect("/userPage");
       })
       .catch((err) => console.log("err login", err));
   } else {

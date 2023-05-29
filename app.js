@@ -29,18 +29,13 @@ app.listen(3000, function () {
   console.log("hello local host 3000 ;)");
 });
 
-//signUp OK
-//login OK
-//cookie OK
-
-//UserPage NON(a verifier)
-
-//user edit (information user)
-
-//Commande NON
-
-//Panier NON
-
-//fiche Produit NON
-
-//contact NON
+//signUp              OK
+//login               OK
+//cookie              OK
+//UserPage            NON   information user
+//userEdit            NON   information user
+//Commande            NON   affichage des produits + selection des produits et ajout au panier
+//req res next          trouver les product en base             res.render template hbs avec each chaque produits
+//Panier              NON   affichage des produits dans le tableau et calcul du total (lab-dom-ironhack-cart)
+//ficheProduit        NON
+//contact             NON
