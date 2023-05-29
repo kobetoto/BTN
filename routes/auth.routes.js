@@ -86,18 +86,17 @@ router.get("/userPage", function (req, res, next) {
 router.get("/user/edit", function (req, res, next) {
   //User.find... pour pre remplire les champs du User
   console.log("coucou");
-  res.render("users/userEdit", {});
-  /*User.findOne({ email: req.session.currentUser.email })
+  User.findOne({ email: req.session.currentUser.email })
     .then(function (userFromDB) {
-      res.render("users/userPage", {
-        email: req.session.currentUser.email,
-        entreprise: req.session.currentUser.nomEntreprise,
-        adresse: req.session.currentUser.adressePostale,
-        ville: req.session.currentUser.ville,
-        tel: req.session.currentUser.telephone,
+      res.render("users/userEdit", {
+        email: userFromDB.email,
+        entreprise: userFromDB.nomEntreprise,
+        adresse: userFromDB.adressePostale,
+        ville: userFromDB.ville,
+        tel: userFromDB.telephone,
       });
     })
-    .catch();*/
+    .catch();
 });
 
 router.post("/user/edit", function (req, res, next) {
