@@ -8,6 +8,8 @@ router.use(bodyparser.urlencoded({ extend: true }));
 
 //recupere le User model
 const User = require("../models/user.model");
+const Product = require("../models/product.model");
+const ficheProduct = require("../models/ficheproduct.model")
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -20,7 +22,7 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.post("/signup", function (req, res, next) {
-  console.log("SIGNUP ===> req.body ===>", req.body);
+  //console.log("SIGNUP ===> req.body ===>", req.body);
 
   const passwordhash = bcryptjs.hashSync(req.body.password, salt);
 
@@ -30,7 +32,7 @@ router.post("/signup", function (req, res, next) {
   })
     .save()
     .then(function (newUserFromDB) {
-      res.render("userPage", { email: req.body.email });
+      res.redirect("/login");
     })
     .catch((err) =>
       console.log("err lors de la sauvegarde de l'user dans la DB", err)
@@ -39,7 +41,6 @@ router.post("/signup", function (req, res, next) {
 
 //login GET/POST
 router.get("/login", function (req, res, next) {
-  console.log("req.session ===>", req.session);
   res.render("login");
 });
 
@@ -51,9 +52,7 @@ router.post("/login", function (req, res, next) {
       if (userFromDB) {
         if (bcryptjs.compareSync(req.body.password, userFromDB.password)) {
           req.session.currentUser = userFromDB; //casier utilisateur
-          res.render("userPage", {
-            email: req.body.email,
-          });
+          res.redirect("/userPage");
         } else {
           console.log("WRONG ===> username || email || password");
           res.redirect("/login");
@@ -65,15 +64,56 @@ router.post("/login", function (req, res, next) {
     .catch((err) => console.log("err login", err));
 });
 
+// GET/ userPage
 router.get("/userPage", function (req, res, next) {
+  console.log("userPAge req.sessID", req.session.currentUser._id);
   if (req.session.currentUser) {
-    res.render("userPage", {
-      email: req.session.currentUser.email,
-      entreprise: User.nomEntreprise,
-      adresse: User.adressePostale,
-      ville: User.ville,
-      tel: User.telephone,
-    });
+    User.findById(req.session.currentUser._id)
+      .then(function (userFromDB) {
+        res.render("users/userPage", {
+          email: userFromDB.email, //userFromDB attention
+          entreprise: userFromDB.nomEntreprise,
+          adresse: userFromDB.adressePostale,
+          ville: userFromDB.ville,
+          tel: userFromDB.telephone,
+        });
+      })
+      .catch();
+  } else {
+    res.redirect("/login");
+  }
+});
+
+//GET POST/ UserEdit
+router.get("/user/edit", function (req, res, next) {
+  //User.find... pour pre remplire les champs du User
+  console.log("coucou");
+  User.findOne({ email: req.session.currentUser.email })
+    .then(function (userFromDB) {
+      res.render("users/userEdit", {
+        email: userFromDB.email,
+        entreprise: userFromDB.nomEntreprise,
+        adresse: userFromDB.adressePostale,
+        ville: userFromDB.ville,
+        tel: userFromDB.telephone,
+      });
+    })
+    .catch();
+});
+
+router.post("/user/edit", function (req, res, next) {
+  if (req.session.currentUser) {
+    User.findByIdAndUpdate(req.session.currentUser._id, {
+      email: req.body.email,
+      nomEntreprise: req.body.entreprise,
+      adressePostale: req.body.adresse,
+      ville: req.body.ville,
+      telephone: req.body.telephone,
+    })
+      .then(function (userFromDB) {
+        res.redirect("/userPage");
+      })
+      .catch((err) => console.log("err login", err));
   } else {
     res.redirect("/login");
   }
@@ -85,32 +125,65 @@ router.get("/logout", function (req, res, next) {
   res.redirect("/");
 });
 
-
-// GET/ userPage
-
-router.get('/user', (req, res) => res.render('users/userpage'));
-router.get('/useredit', (req, res) => res.render('auth/useredit'));
-
-
 // GET/ contact
 
-router.get('/contact', (req, res) => res.render('auth/contact'));
+router.get("/contact", (req, res) => res.render("auth/contact"));
 
 // GET/ calendrier
 
-router.get('/calendrier', (req, res) => res.render('auth/calendrier'));
+router.get("/calendrier", (req, res) => res.render("auth/calendrier"));
 
 //GET/ commande
 
-router.get('/commande', (req, res) => res.render('auth/commande'));
+router.get("/commande", (req, res) => {
+  // retrieve les datas de la DB (produits)
+  Product.find()
+    .then((allProductsFromBD) => {
+      const products = allProductsFromBD.map((product) => ({
+        id: product._id,
+        url: product.url,
+        nomProduit: product.nomProduit,
+        prixKgOuPiece: product.prixKgOuPiece,
+        famille: product.famille,
+        origine: product.origine,
+        // description: product.description,
+      }));
+      res.render("auth/commande", { products });
+
+    })
+
+    .catch((error) => {
+      console.log("Error while getting the products from the DB", error);
+      next(error);
+    });
+
+});
 
 // GET / panier
 
-router.get('/panier', (req, res) => res.render('auth/panier'));
+router.get("/panier", (req, res) => res.render("auth/panier"));
 
-// GET / fiche produits
+// GET / fiche produit
 
-router.get('/ficheproduit', (req, res) => res.render('auth/ficheProduits'));
+router.get("/ficheproduit", (req, res) => {
+  ficheProduct.find()
+    .then((allficheProductsFromBD) => {
+      const ficheProducts = allficheProductsFromBD.map((ficheProduct) => ({
+        id: ficheProduct._id,
+        url: ficheProduct.url,
+        nomProduit: ficheProduct.nomProduit,
+        prixKgOuPiece: ficheProduct.prixKgOuPiece,
+        famille: ficheProduct.famille,
+        origine: ficheProduct.origine,
+        description: ficheProduct.description,
+      }));
+      res.render("auth/ficheproduct", { ficheProducts });
+    })
 
+    .catch((error) => {
+      console.log("Error while getting the products from the DB", error);
+      next(error);
+    });
+})
 
 module.exports = router; //exporte le dossier

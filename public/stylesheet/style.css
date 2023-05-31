@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    padding: 0;
+    padding: 1;
     box-sizing: border-box;
 }
 
@@ -67,4 +67,87 @@ body {
 .logo img {
     width: 15%;
 
+}
+
+/* ********************** page commande ********************** */
+#commande_image {
+
+    background-image: url("https://res.cloudinary.com/dxeoy1wnz/image/upload/v1684586990/logo%20et%20fond%20d%27%C3%A9cran/image3_ozjflm.jpg");
+    background-repeat: no-repeat;
+    height: 60%;
+    background-size: cover;
+}
+
+#commande_titre {
+    font-size: 50px;
+    text-align: center;
+}
+
+.container {
+    margin-inline: 12rem;
+    margin-block: 2rem;
+}
+
+.produits-list>* {
+    margin-bottom: 1rem;
+}
+
+.produits {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.2rem;
+    justify-items: center;
+    padding: 40px;
+}
+
+.produit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.produit_img {
+    display: block;
+    width: 150px;
+}
+
+/****************** filtre ********************/
+.filtrebtn {
+    background-color: rgb(169, 255, 158);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    /* padding: 10px;
+    margin-top: 10px; */
+}
+
+.filtrebtn:hover {
+    background-color: #7feb7f;
+}
+
+.filtre {
+    position: relative;
+    display: inline-block;
+
+}
+
+.sousfiltre {
+    display: none;
+    background-color: rgb(109, 167, 101);
+    min-width: 200px;
+    position: absolute;
+}
+
+.sousfiltre a {
+    color: rgb(190, 39, 39);
+    /* padding: 20px; */
+    text-decoration: none;
+    display: block;
+
+}
+
+.filtre:hover .sousfiltre {
+    display: block;
 }

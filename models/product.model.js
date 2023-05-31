@@ -1,17 +1,21 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 //creation du model PRODUCT
 const productSchema = new Schema(
   {
     nomProduit: String,
-    prixKilo: Number,
-    family: String,
+    prixKgOuPiece: Number,
+    famille: String,
+    origine: String,
     description: String,
+    url: String,
   },
   {
-    timeStamps: true,
+    timeStamps: true
   }
 );
 
 //exportation du model ORDER
-module.exports = mongoose.model("product", productSchema);
+const product = model("product", productSchema);
+
+module.exports = product;
