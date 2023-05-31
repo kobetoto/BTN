@@ -9,7 +9,7 @@ router.use(bodyparser.urlencoded({ extend: true }));
 //recupere le User model
 const User = require("../models/user.model");
 const Product = require("../models/product.model");
-const ficheProduct = require("../models/ficheproduct.model")
+// const ficheProduct = require("../models/ficheproduct.model")
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -146,7 +146,6 @@ router.get("/commande", (req, res) => {
         prixKgOuPiece: product.prixKgOuPiece,
         famille: product.famille,
         origine: product.origine,
-        // description: product.description,
       }));
       res.render("auth/commande", { products });
 
@@ -165,20 +164,12 @@ router.get("/panier", (req, res) => res.render("auth/panier"));
 
 // GET / fiche produit
 
-router.get("/ficheproduit", (req, res) => {
-  ficheProduct.find()
-    .then((allficheProductsFromBD) => {
-      const ficheProducts = allficheProductsFromBD.map((ficheProduct) => ({
-        id: ficheProduct._id,
-        url: ficheProduct.url,
-        nomProduit: ficheProduct.nomProduit,
-        prixKgOuPiece: ficheProduct.prixKgOuPiece,
-        famille: ficheProduct.famille,
-        origine: ficheProduct.origine,
-        description: ficheProduct.description,
-      }));
-      res.render("auth/ficheproduct", { ficheProducts });
-    })
+router.get("/commande/_Id", (req, res, next) => {
+  const { productId } = req.params;
+
+  Product.findById(productId)
+    .then(laFicheProduct => res.render("ficheproduct", { ficheproduit: laFicheProduct }))
+
 
     .catch((error) => {
       console.log("Error while getting the products from the DB", error);
