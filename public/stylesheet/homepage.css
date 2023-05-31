@@ -1,0 +1,23 @@
+.homehp{
+    background-image: url("https://console.cloudinary.com/console/c-4cceae910b852533b40bbb77adad4c/media_library/search?q=");
+    background-size: cover ;
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-size: 100px;
+    color: rgb(246, 148, 2);
+    
+    text-align: center;
+}
+  button{
+    height: 64px;
+    width: 104px;
+    background-color: #1122a111;
+    border-radius: 5px;
+    transition: all 1s ease-out; /*??????????????*/
+  }
+  
+  button:hover{
+      background-color: #fcdc12;
+      border-radius: 50px;
+      transform: fade();
+  }
