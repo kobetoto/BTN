@@ -1,0 +1,22 @@
+<div id="ficheproduit_image">
+
+</div>
+<section class="ficheproduit container">
+   <div id="ficheproduit_titre">
+    Fiche Produit
+   </div>
+</section>
+
+<div class="ficheproduits">
+    {{#each ficheProducts}}
+    <div class="ficheproduit">
+        <img class="ficheproduit_img" src="{{url}}" alt="{{nomProduit}}"/>
+        <h3 class="ficheproduit_nomProduit">{{nomProduit}}</h3>
+        <h4 class="ficheproduit_famille">{{famille}}</a>
+        <h4 class="ficheproduit_origine">{{origine}}</h4>
+        <h4 class="ficheproduit_prixKgOuPiece">{{prixKgOuPiece}}</h4>
+        <h5 class="ficheproduit_description">{{description}}</h5>
+    </div>
+{{/each}}
+</div>
+<a href="/commande"><button>retour</button></a>

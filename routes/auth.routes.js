@@ -8,6 +8,8 @@ router.use(bodyparser.urlencoded({ extend: true }));
 
 //recupere le User model
 const User = require("../models/user.model");
+const Product = require("../models/product.model");
+const ficheProduct = require("../models/ficheproduct.model")
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -139,14 +141,55 @@ router.get("/calendrier", (req, res) => res.render("auth/calendrier"));
 
 //GET/ commande
 
-router.get("/commande", (req, res) => res.render("auth/commande"));
+router.get("/commande", (req, res) => {
+  // retrieve les datas de la DB (produits)
+  Product.find()
+    .then((allProductsFromBD) => {
+      const products = allProductsFromBD.map((product) => ({
+        id: product._id,
+        url: product.url,
+        nomProduit: product.nomProduit,
+        prixKgOuPiece: product.prixKgOuPiece,
+        famille: product.famille,
+        origine: product.origine,
+        // description: product.description,
+      }));
+      res.render("auth/commande", { products });
+
+    })
+
+    .catch((error) => {
+      console.log("Error while getting the products from the DB", error);
+      next(error);
+    });
+
+});
 
 // GET / panier
 
 router.get("/panier", (req, res) => res.render("auth/panier"));
 
-// GET / fiche produits
+// GET / fiche produit
 
-router.get("/ficheproduit", (req, res) => res.render("auth/ficheProduits"));
+router.get("/ficheproduit", (req, res) => {
+  ficheProduct.find()
+    .then((allficheProductsFromBD) => {
+      const ficheProducts = allficheProductsFromBD.map((ficheProduct) => ({
+        id: ficheProduct._id,
+        url: ficheProduct.url,
+        nomProduit: ficheProduct.nomProduit,
+        prixKgOuPiece: ficheProduct.prixKgOuPiece,
+        famille: ficheProduct.famille,
+        origine: ficheProduct.origine,
+        description: ficheProduct.description,
+      }));
+      res.render("auth/ficheproduct", { ficheProducts });
+    })
+
+    .catch((error) => {
+      console.log("Error while getting the products from the DB", error);
+      next(error);
+    });
+})
 
 module.exports = router; //exporte le dossier

@@ -4,16 +4,18 @@ const { Schema, model } = require("mongoose");
 const productSchema = new Schema(
   {
     nomProduit: String,
-    prixKilo: Number,
-    family: String,
+    prixKgOuPiece: Number,
+    famille: String,
+    origine: String,
     description: String,
+    url: String,
   },
   {
-    timeStamps: true,
+    timeStamps: true
   }
 );
 
 //exportation du model ORDER
-const User = model("product", productSchema);
+const product = model("product", productSchema);
 
-module.exports = User;
+module.exports = product;
