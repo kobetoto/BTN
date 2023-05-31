@@ -1,17 +1,20 @@
 .homehp{
-    background-image: url("https://console.cloudinary.com/console/c-4cceae910b852533b40bbb77adad4c/media_library/search?q=");
+    background-image: url("../images/fonds/image6.jpeg");
     background-size: cover ;
     background-repeat: no-repeat;
     height: 100vh;
-    font-size: 100px;
-    color: rgb(246, 148, 2);
+    font-size: 80px;
+    color: rgb(0, 172, 0);
+    
     
     text-align: center;
 }
+
+
   button{
     height: 64px;
     width: 104px;
-    background-color: #1122a111;
+    background-color: #10c24b7a;
     border-radius: 5px;
     transition: all 1s ease-out; /*??????????????*/
   }
