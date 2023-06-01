@@ -1,3 +1,4 @@
+/* background-color: rgb(191, 250, 183) */
 * {
     margin: 0;
     padding: 1;
@@ -6,7 +7,7 @@
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rgb(169, 255, 158);
+    background-color: rgb(191, 250, 183);
 }
 
 .barredestaches {
@@ -22,7 +23,7 @@ body {
 
 /* ********************* menu deroulant ************************ */
 .menubtn {
-    background-color: rgb(169, 255, 158);
+    background-color: rgb(191, 250, 183);
     color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
@@ -72,7 +73,7 @@ body {
 /* ********************** page commande ********************** */
 #commande_image {
 
-    background-image: url("https://res.cloudinary.com/dxeoy1wnz/image/upload/v1684586990/logo%20et%20fond%20d%27%C3%A9cran/image3_ozjflm.jpg");
+    background-image: linear-gradient(rgba(231, 179, 238, 0.5), rgba(255, 255, 255, 0.26)), url("../images/fonds/image3-removebg-preview.png");
     background-repeat: no-repeat;
     height: 60%;
     background-size: cover;
@@ -150,4 +151,34 @@ body {
 
 .filtre:hover .sousfiltre {
     display: block;
+}
+/* 
+**************** calendrier *************** */
+#calendrier_image {
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),
+        url("../images/fonds/image\ 1.jpeg");
+    background-repeat: no-repeat;
+    height: 60%;
+    background-size: cover;
+}
+
+#calendrier_titre {
+    font-size: 50px;
+    text-align: center;
+}
+
+.calendrier table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.calendrier th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #a84f4f;
+}
+
+.calendrier th {
+    background-color: #a84f4f;
 }

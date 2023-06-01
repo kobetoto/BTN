@@ -24,12 +24,11 @@
     {{#each products}}
     <div class="produit">
         <img class="produit_img" src="{{url}}" alt="{{nomProduit}}"/>
-        <h3 class="produit_nomProduit">{{nomProduit}}</h3>
-        <h4 class="produit_famille">{{famille}}</a>
-        <h4 class="produit_origine">{{origine}}</h4>
-        <h4 class="produit_prixKgOuPiece">{{prixKgOuPiece}}</h4>
-        <h5 class="produit_description">{{description}}</h5>
-        <a href="/commande/{{id}}"><button>Fiche produit</button></a>
+        <h4 class="produit_nomProduit">Produit : {{nomProduit}}</h4>
+        <h5 class="produit_famille">Famille : {{famille}} </h5>
+        <h5 class="produit_origine">Origine : {{origine}}</h5>
+        <h4 class="produit_prixKgOuPiece">Prix Kg/piéce : {{prixKgOuPiece}}</h4>
+        <a href="/ficheproduit/{{id}}"><button>Fiche produit</button></a>
           </div>
         
 {{/each}}

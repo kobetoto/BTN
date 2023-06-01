@@ -177,38 +177,26 @@ router.post("/commande", function (req, res, next) {
   // => req.session {}
 });
 
-// GET / fiche produit */
+ // GET / fiche produit ID */
 
-router.get("/commande/:productId", (req, res, next) => {
+router.get('/ficheproduit/:productId', (req, res, next) => {
   const { productId } = req.params;
 
   Product.findById(productId)
-    .then(theProduct => res.render("auth/ficheproduct", { ficheproduct: theProduct }))
-
-
-  // GET / fiche produit
-
-  router.get("/ficheproduit", (req, res) => {
-    ficheProduct
-      .find()
-      .then((allficheProductsFromBD) => {
-        const ficheProducts = allficheProductsFromBD.map((ficheProduct) => ({
-          id: ficheProduct._id,
-          url: ficheProduct.url,
-          nomProduit: ficheProduct.nomProduit,
-          prixKgOuPiece: ficheProduct.prixKgOuPiece,
-          famille: ficheProduct.famille,
-          origine: ficheProduct.origine,
-          description: ficheProduct.description,
-        }));
-        res.render("auth/ficheproduct", { ficheProducts });
-      })
+    .then(theProduct => res.render("auth/ficheproduct", { product: theProduct }))
 
     .catch((error) => {
       console.log("Error while getting the products detail: ", error);
+
       next(error);
-    });
+
+    })
 });
+/*
+ficheproduct:{"nomProduit":"Abricot", "famille": "fruit"}
+ficheprduct.nomProduit
+
+*/
 
 // GET / panier */
 
@@ -222,7 +210,7 @@ router.get("/commande/:productId", (req, res, next) => {
       qty: req.session.panier[0].qty,
     })
   })
-});
+
 
 
 module.exports = router; //exporte le dossier
