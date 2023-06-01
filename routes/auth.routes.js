@@ -205,6 +205,10 @@ ficheprduct.nomProduit
     })
   })
 
+/*
+/// get calendrier
+*/
+router.get('/calendrier', (req, res) => res.render('auth/calendrier'));
 
 
 module.exports = router; //exporte le dossier
