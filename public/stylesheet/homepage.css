@@ -1,7 +1,10 @@
-.homehp {
+/* ********************** homeHp ********************** */
+  .homehp {
   background-image: url("../images/fonds/homep.webp");
   background-size: cover;
   background-repeat: no-repeat;
+  border-color: #e7717d;
+  border-radius: 70px;
   height: 48vh;
   font-size: 80px;
   color: #e7717d;
@@ -9,30 +12,115 @@
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: #e7717d;
-  margin: 0px 10px 0px;
-  font-size: large;
+.homemp{
+  text-align: center;
+  height: 1000px;
 }
 
 h1 {
   margin-top: 400px;
 }
+table{
+  text-align: center;
+}
+/* ********************** tableau/ homeMp ********************** */
+.homemp h1{
+font-size: 310%;
+color: #ffcab0;
+padding-bottom: 24px;
+text-shadow: #e7717d;
+}
 
+.homemp h2{
+color: #ffd063;
+box-shadow: 0px 0px 4px #e7717d9b;
+border-radius: 50px;
+}
+
+td{
+  padding-left:42px;
+}
+
+
+
+.two{
+  margin-left: 100px;
+  padding-left: 100px;
+  height: 120px;
+
+}
+
+.recherche{
+  text-align: left;
+}
+.commander{
+  text-align: right;
+}
+
+.livrett{
+  text-align: left;
+}
+
+.reception{
+  text-align: right;
+}
+
+
+.step{
+  color: #e7717d;
+}
+
+
+p{
+  font-family: Montserrat;
+}
+/* ********************** homeBp********************** */
+.homebp{
+  background-image: url("../images/fonds/image4.jpeg");
+  background-size: cover ;
+  border-radius: 70px;
+}
+.homebp h2{
+color: #e7717d;
+
+}
+article{
+  margin: 110px;
+}
+.livr{
+  text-align: right;
+  padding-top: 44px;
+  
+}
+
+.agri{
+  margin-left: 15px;
+}
+
+.comm{
+  text-align: right;
+  padding-top: 24px;
+  
+}
+
+.prod{
+  margin-left: 15px;
+}
+
+/* ********************** button ********************** */
 button {
   height: 64px;
   width: 104px;
   background-color: #ffebbb;
   color: #e7717d;
-
-  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 21px;
   transition: all 1s ease-out;
 }
 
 button:hover {
   background-color: #e7717d;
   color: #ffebbb;
-  border-radius: 50px;
+  border-radius: 60px;
   transform: fade();
 }

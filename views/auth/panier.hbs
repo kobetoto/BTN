@@ -15,11 +15,11 @@
       {{#each products }}
       <tr class="product">
         <td class="nomProduit"><span></span>{{nom}}</td>
-        <td class="prix"><span>{{prixKgOuPiece}}</span>€</td>
+        <td class="prix"><span>{{prix}}</span>€</td>
         <td class="nbrColis"><span>{{qty}}</span></td>
-        <td class="total">$<span>0</span></td>
         <td class="supp">
-          <button class="btn supp">supprimer</button>
+          <button class="btn supp">➖</button>
+          <button class="btn supp">➕</button>
         </td>
       </tr>
       {{/each}}

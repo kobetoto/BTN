@@ -134,14 +134,10 @@ router.get("/logout", function (req, res, next) {
 
 router.get("/commande", (req, res, next) => {
   // retrieve les datas de la DB (produits)
-  console.log("req.session route POST /commande :)", req.session);
+
   if (req.session) {
-    req.session.panier = [
-      { nom: "bananes", qty: "23" },
-      { nom: "Pommes", qty: "42" },
-    ];
+    req.session.panier = [{ nom: "", prix: "" }];
   }
-  console.log("req.session route POST /commande :)", req.session);
 
   Product.find()
     .then((allProductsFromBD) => {
@@ -162,32 +158,33 @@ router.get("/commande", (req, res, next) => {
     });
 });
 
-//POST/ commande
-router.post("/commande", function (req, res, next) {
-  //   req.body.nomProduit
-  // produit
-  // ===
-  // {
-  //   productId: “1234”,
-  //   quantity: 3
-  // }
-  // => req.session {}
+//POST/
+router.get("/panier/:produit", function (req, res, next) {
+  const nomProd = req.params.produit;
+
+  if (req.session.panier) {
+    req.session.panier.push({ nom: nomProd, prix: "101" });
+  }
+
+  res.render("auth/panier", {
+    products: req.session.panier,
+  });
 });
 
 // GET / panier
 
-Product.findById(productId).then((theProduct) =>
-  res.render("auth/ficheproduct", { ficheproduct: theProduct })
-);
 router.get("/panier", function (req, res, next) {
-  console.log("req.session route POST /panier=====>", req.session);
-  console.log("req.session route POST /panier=====>", req.session.panier[0].id);
+  /*console.log("req.session route POST /panier=====>", req.session);
+  console.log(
+    "req.session route POST /panier=====>",
+    req.session.panier[0].nom
+  );
 
   res.render("auth/panier", {
     products: req.session.panier,
-    nomProduit: "toto", //req.session.panier[0].id,
+    nom: req.session.panier[0].id,
     qty: req.session.panier[0].qty,
-  });
+  });*/
 });
 
 // GET / fiche produit
