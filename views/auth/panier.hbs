@@ -1,5 +1,33 @@
+<link rel="stylesheet" href="/stylesheet/panier.css" />
 <div>
-  <h1>
-    PANIER
-  </h1>
+  <h1>Panier</h1>
+
+<table id="panier">
+      <thead>
+        <tr>
+          <th>NOM DU PRODUIT</th>
+          <th>PRIX KG</th>
+          <th>NOMBRE DE COLIS</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products }}
+        <tr class="product">
+          <td class=""><span>{{nomProduit}}</span></td>
+          <td class="prix"><span>{{prixKgOuPiece}}</span>€</td>
+          <td class="nbrColis"><span>{{qty}}</span></td>
+          <td class="total">$<span>0</span></td>
+          <td class="supp">
+            <button class="btn supp">supprimer</button>
+          </td>
+        </tr>
+        {{/each}}
+
+    </table>
+    <p class="calculate-total">
+      <button id="calculate" class="btn btn-success">total</button>
+    </p>
+    <h2 id="total-value">Total: $<span>0</span></h2>
+    <script type="text/javascript" src="./src/index.js"></script>
 </div>
