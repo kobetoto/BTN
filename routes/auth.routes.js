@@ -9,7 +9,7 @@ router.use(bodyparser.urlencoded({ extend: true }));
 //recupere le User model
 const User = require("../models/user.model");
 const Product = require("../models/product.model");
-const ficheProduct = require("../models/ficheproduct.model");
+//const ficheProduct = require("../models/ficheproduct.model")
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -155,7 +155,6 @@ router.get("/commande", (req, res) => {
         prixKgOuPiece: product.prixKgOuPiece,
         famille: product.famille,
         origine: product.origine,
-        // description: product.description,
       }));
       res.render("auth/commande", { products });
     })
