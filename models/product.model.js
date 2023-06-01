@@ -16,6 +16,6 @@ const productSchema = new Schema(
 );
 
 //exportation du model ORDER
-const product = model("product", productSchema);
+const Product = model("Product", productSchema);
 
-module.exports = product;
+module.exports = Product;

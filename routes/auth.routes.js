@@ -135,7 +135,7 @@ router.get("/calendrier", (req, res) => res.render("auth/calendrier"));
 
 //GET/ commande
 
-router.get("/commande", (req, res) => {
+router.get("/commande", (req, res, next) => {
   // retrieve les datas de la DB (produits)
   Product.find()
     .then((allProductsFromBD) => {
@@ -158,23 +158,21 @@ router.get("/commande", (req, res) => {
 
 });
 
-// GET / panier
+// GET / fiche produit */
 
-router.get("/panier", (req, res) => res.render("auth/panier"));
-
-// GET / fiche produit
-
-router.get("/commande/_Id", (req, res, next) => {
+router.get("/commande/:productId", (req, res, next) => {
   const { productId } = req.params;
 
   Product.findById(productId)
-    .then(laFicheProduct => res.render("ficheproduct", { ficheproduit: laFicheProduct }))
-
+    .then(theProduct => res.render("auth/ficheproduct", { ficheproduct: theProduct }))
 
     .catch((error) => {
-      console.log("Error while getting the products from the DB", error);
+      console.log("Error while getting the products detail: ", error);
       next(error);
     });
 })
 
+// GET / panier */
+
+router.get("/panier", (req, res) => res.render("auth/panier"));
 module.exports = router; //exporte le dossier
