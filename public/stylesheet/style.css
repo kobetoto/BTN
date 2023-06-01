@@ -9,11 +9,28 @@ body {
     background-color: rgb(169, 255, 158);
 }
 
+/* ***************************** header *********************** */
+header{
+    height: 50ppx;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .barredestaches {
     display: flex;
-    border: 1px solid rgb(0, 0, 0);
     align-items: center;
+    border-radius: 50px;
 }
+
+/* ***************************** LOGO *********************** */
+.logo {
+    margin-right: auto;
+}
+
+.logo img {
+    width: 20%;
+
+}
+
 
 .contact {
     display: flex;
@@ -23,15 +40,15 @@ body {
 /* ********************* menu deroulant ************************ */
 .menubtn {
     background-color: rgb(169, 255, 158);
-    color: rgb(0, 0, 0);
-    border: none;
+    color: rgb(192, 0, 134);
+    border:#7feb7f;
     cursor: pointer;
     padding: 10px;
     margin-top: 10px;
 }
 
 .menubtn:hover {
-    background-color: #7feb7f;
+    background-color: #08b8dc;
 }
 
 .menu {
@@ -42,13 +59,13 @@ body {
 
 .sousmenu {
     display: none;
-    background-color: rgb(109, 167, 101);
+    background-color: #08b8dc;
     min-width: 200px;
     position: absolute;
 }
 
 .sousmenu a {
-    color: rgb(190, 39, 39);
+    color: rgb(192, 0, 134);
     padding: 20px;
     text-decoration: none;
     display: block;
@@ -56,18 +73,12 @@ body {
 }
 
 .menu:hover .sousmenu {
+    background-color: #08b8dc;
     display: block;
+    border-radius: 50px;
+    transform: fade();
 }
 
-/* ***************************** LOGO *********************** */
-.logo {
-    margin-right: auto;
-}
-
-.logo img {
-    width: 15%;
-
-}
 
 /* ********************** page commande ********************** */
 #commande_image {
