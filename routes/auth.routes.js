@@ -9,7 +9,7 @@ router.use(bodyparser.urlencoded({ extend: true }));
 //recupere le User model
 const User = require("../models/user.model");
 const Product = require("../models/product.model");
-//const ficheProduct = require("../models/ficheproduct.model")
+
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -184,16 +184,7 @@ router.get("/commande/:productId", (req, res, next) => {
 
   Product.findById(productId)
     .then(theProduct => res.render("auth/ficheproduct", { ficheproduct: theProduct }))
-  router.get("/panier", function (req, res, next) {
-    console.log("req.session route POST /panier=====>", req.session);
-    console.log("req.session route POST /panier=====>", req.session.panier[0].id);
 
-    res.render("auth/panier", {
-      products: req.session.panier,
-      nomProduit: "toto", //req.session.panier[0].id,
-      qty: req.session.panier[0].qty,
-    });
-  });
 
   // GET / fiche produit
 
@@ -221,5 +212,17 @@ router.get("/commande/:productId", (req, res, next) => {
 
 // GET / panier */
 
-router.get("/panier", (req, res) => res.render("auth/panier"));
+  router.get("/panier", function (req, res, next) {
+    console.log("req.session route POST /panier=====>", req.session);
+    console.log("req.session route POST /panier=====>", req.session.panier[0].id);
+
+    res.render("auth/panier", {
+      products: req.session.panier,
+      nomProduit: "toto", //req.session.panier[0].id,
+      qty: req.session.panier[0].qty,
+    })
+  })
+});
+
+
 module.exports = router; //exporte le dossier
