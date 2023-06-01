@@ -9,7 +9,7 @@ router.use(bodyparser.urlencoded({ extend: true }));
 //recupere le User model
 const User = require("../models/user.model");
 const Product = require("../models/product.model");
-// const ficheProduct = require("../models/ficheproduct.model")
+//const ficheProduct = require("../models/ficheproduct.model")
 
 //bcrypt
 const bcryptjs = require("bcryptjs");
@@ -66,7 +66,7 @@ router.post("/login", function (req, res, next) {
 
 // GET/ userPage
 router.get("/userPage", function (req, res, next) {
-  console.log("userPAge req.sessID", req.session.currentUser._id);
+  //console.log("userPAge req.sessID", req.session.currentUser._id);
   if (req.session.currentUser) {
     User.findById(req.session.currentUser._id)
       .then(function (userFromDB) {
@@ -137,6 +137,15 @@ router.get("/calendrier", (req, res) => res.render("auth/calendrier"));
 
 router.get("/commande", (req, res, next) => {
   // retrieve les datas de la DB (produits)
+  console.log("req.session route POST /commande :)", req.session);
+  if (req.session) {
+    req.session.panier = [
+      { id: "cerise", qty: "5" },
+      { id: "4321", qty: "10" },
+    ];
+  }
+  console.log("req.session route POST /commande :)", req.session);
+
   Product.find()
     .then((allProductsFromBD) => {
       const products = allProductsFromBD.map((product) => ({
@@ -148,14 +157,24 @@ router.get("/commande", (req, res, next) => {
         origine: product.origine,
       }));
       res.render("auth/commande", { products });
-
     })
 
     .catch((error) => {
       console.log("Error while getting the products from the DB", error);
       next(error);
     });
+});
 
+//POST/ commande
+router.post("/commande", function (req, res, next) {
+  //   req.body.nomProduit
+  // produit
+  // ===
+  // {
+  //   productId: “1234”,
+  //   quantity: 3
+  // }
+  // => req.session {}
 });
 
 // GET / fiche produit */
@@ -165,12 +184,40 @@ router.get("/commande/:productId", (req, res, next) => {
 
   Product.findById(productId)
     .then(theProduct => res.render("auth/ficheproduct", { ficheproduct: theProduct }))
+  router.get("/panier", function (req, res, next) {
+    console.log("req.session route POST /panier=====>", req.session);
+    console.log("req.session route POST /panier=====>", req.session.panier[0].id);
+
+    res.render("auth/panier", {
+      products: req.session.panier,
+      nomProduit: "toto", //req.session.panier[0].id,
+      qty: req.session.panier[0].qty,
+    });
+  });
+
+  // GET / fiche produit
+
+  router.get("/ficheproduit", (req, res) => {
+    ficheProduct
+      .find()
+      .then((allficheProductsFromBD) => {
+        const ficheProducts = allficheProductsFromBD.map((ficheProduct) => ({
+          id: ficheProduct._id,
+          url: ficheProduct.url,
+          nomProduit: ficheProduct.nomProduit,
+          prixKgOuPiece: ficheProduct.prixKgOuPiece,
+          famille: ficheProduct.famille,
+          origine: ficheProduct.origine,
+          description: ficheProduct.description,
+        }));
+        res.render("auth/ficheproduct", { ficheProducts });
+      })
 
     .catch((error) => {
       console.log("Error while getting the products detail: ", error);
       next(error);
     });
-})
+});
 
 // GET / panier */
 
