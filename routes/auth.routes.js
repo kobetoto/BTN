@@ -10,13 +10,14 @@ router.use(bodyparser.urlencoded({ extend: true }));
 const User = require("../models/user.model");
 const Product = require("../models/product.model");
 
-
 //bcrypt
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 const salt = bcryptjs.genSaltSync(saltRounds);
 
-//signup GET/POST
+/*
+SIGNUP GET/POST
+*/
 router.get("/signup", function (req, res, next) {
   res.render("signup");
 });
@@ -39,7 +40,9 @@ router.post("/signup", function (req, res, next) {
     );
 });
 
-//login GET/POST
+/*
+LOGIN GET/POST
+*/
 router.get("/login", function (req, res, next) {
   res.render("login");
 });
@@ -64,7 +67,9 @@ router.post("/login", function (req, res, next) {
     .catch((err) => console.log("err login", err));
 });
 
-// GET/ userPage
+/*
+USERPAGE
+*/
 router.get("/userPage", function (req, res, next) {
   //console.log("userPAge req.sessID", req.session.currentUser._id);
   if (req.session.currentUser) {
@@ -125,26 +130,14 @@ router.get("/logout", function (req, res, next) {
   res.redirect("/");
 });
 
-// GET/ contact
-
-router.get("/contact", (req, res) => res.render("auth/contact"));
-
-// GET/ calendrier
-
-router.get("/calendrier", (req, res) => res.render("auth/calendrier"));
-
 //GET/ commande
 
 router.get("/commande", (req, res, next) => {
   // retrieve les datas de la DB (produits)
-  console.log("req.session route POST /commande :)", req.session);
+
   if (req.session) {
-    req.session.panier = [
-      { id: "cerise", qty: "5" },
-      { id: "4321", qty: "10" },
-    ];
+    req.session.panier = [{ nom: "", prix: "" }];
   }
-  console.log("req.session route POST /commande :)", req.session);
 
   Product.find()
     .then((allProductsFromBD) => {
@@ -165,16 +158,17 @@ router.get("/commande", (req, res, next) => {
     });
 });
 
-//POST/ commande
-router.post("/commande", function (req, res, next) {
-  //   req.body.nomProduit
-  // produit
-  // ===
-  // {
-  //   productId: “1234”,
-  //   quantity: 3
-  // }
-  // => req.session {}
+//POST/
+router.get("/panier/:produit", function (req, res, next) {
+  const nomProd = req.params.produit;
+
+  if (req.session.panier) {
+    req.session.panier.push({ nom: nomProd, prix: "101" });
+  }
+
+  res.render("auth/panier", {
+    products: req.session.panier,
+  });
 });
 
  // GET / fiche produit ID */
