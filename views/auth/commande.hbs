@@ -1,35 +1,31 @@
+<link rel="stylesheet" href="/stylesheet/commande.css" />
+
 <div id="commande_image">
-
-</div>
-<section class="produits-list container">
   <h1>Commande</h1>
-</section>
-
-<div class="filtre">
-  <button class="filtrebtn">Filtre</button>
-
-  <div class="sousfiltre">
-    {{!-- {{#each products}} --}}
-    <a>Fruits</a>
-    <a>Fruits rouges</a>
-    <a>Légumes</a>
-    <a>Aromates</a>
-  </div>
-  {{!-- {{#each}} --}}
 </div>
 
-<div class="produits">
-  {{#each products}}
-  <div class="produit">
-    <img class="produit_img" src="{{url}}" alt="{{nomProduit}}" />
-    <h3 class="produit_nomProduit">{{nomProduit}}</h3>
-    <h4 class="produit_famille">{{famille}}</a>
-      <h4 class="produit_origine">{{origine}}</h4>
-      <h4 class="produit_prixKgOuPiece">{{prixKgOuPiece}}</h4>
-      <h5 class="produit_description">{{description}}</h5>
-      <a href="/ficheproduit/{{nomProduit}}"><button>Fiche produit</button></a>
-      <a href="/panier/{{nomProduit}}"><button>🛒</button></a>
-  </div>
 
-  {{/each}}
+  <div class="filtre">
+    <button class="filtrebtn">Filtre</button>
+    <div class="sousfiltre">
+      <a>Fruits</a>
+      <a>Fruits rouges</a>
+      <a>Légumes</a>
+      <a>Aromates</a>
+      </div>
 </div>
+
+  <div class="produits">
+    {{#each products}}
+    <div class="produit">
+      <img class="produit_img" src="{{url}}" alt="{{nomProduit}}" />
+      <h3 class="produit_nomProduit">{{nomProduit}}</h3>
+      <h4 class="produit_famille">Fammille : {{famille}}</a>
+        <h4 class="produit_origine">Origine : {{origine}}</h4>
+        <h4 class="produit_prixKgOuPiece">Prix KG : {{prixKgOuPiece}}€</h4>
+        <a href="/ficheproduct/{{id}}"><button>Fiche produit</button></a>
+        <a href="/panier/{{id}}"><button>🛒</button></a>
+        </div>
+
+    {{/each}}
+    </div>

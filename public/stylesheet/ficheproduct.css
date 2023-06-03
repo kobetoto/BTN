@@ -1,0 +1,30 @@
+#ficheproduit_image {
+    background-image: url("../images/fonds/image5-removebg-preview.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 183;
+}
+
+#ficheproduit_titre {
+
+    font-size: 30px;
+    line-height: 122px;
+    color: #5d0d6deb;
+    text-align: center;
+}
+
+.ficheproduit_img {
+    border-radius: 30px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+.ficheproduit_description {
+
+    font-size: 15px;
+    padding: 10px;
+    text-align: justify;
+}

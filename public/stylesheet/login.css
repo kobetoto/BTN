@@ -1,0 +1,18 @@
+.loginhp {
+    background-image: url("../images/fonds/image6-removebg-preview.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #5d0d6deb;
+    text-align: center;
+    height: 100%;
+}
+
+h1 {
+    position: relative;
+    margin-top: 100px;
+    vertical-align: text-top;
+    font-size: 60px;
+    line-height: 150px;
+}

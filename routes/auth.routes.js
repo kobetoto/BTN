@@ -158,6 +158,7 @@ router.get("/commande", (req, res, next) => {
     });
 });
 
+
 //POST/
 router.get("/panier/:produit", function (req, res, next) {
   const nomProd = req.params.produit;
@@ -171,9 +172,23 @@ router.get("/panier/:produit", function (req, res, next) {
   });
 });
 
+// GET / panier */
+
+router.get("/panier", function (req, res, next) {
+  // console.log("req.session route POST /panier=====>", req.session);
+  // console.log("req.session route POST /panier=====>", req.session.panier[0].id);
+
+
+  res.render("auth/panier", {
+    products: req.session.panier,
+    nomProduit: "toto", //req.session.panier[0].id,
+    qty: req.session.panier[0].qty,
+  })
+})
+
  // GET / fiche produit ID */
 
-router.get('/ficheproduit/:productId', (req, res, next) => {
+router.get('/ficheproduct/:productId', (req, res, next) => {
   const { productId } = req.params;
 
   Product.findById(productId)
@@ -189,26 +204,14 @@ router.get('/ficheproduit/:productId', (req, res, next) => {
 /*
 ficheproduct:{"nomProduit":"Abricot", "famille": "fruit"}
 ficheprduct.nomProduit
-
 */
 
-// GET / panier */
-
-  router.get("/panier", function (req, res, next) {
-    console.log("req.session route POST /panier=====>", req.session);
-    console.log("req.session route POST /panier=====>", req.session.panier[0].id);
-
-    res.render("auth/panier", {
-      products: req.session.panier,
-      nomProduit: "toto", //req.session.panier[0].id,
-      qty: req.session.panier[0].qty,
-    })
-  })
 
 /*
 /// get calendrier
 */
 router.get('/calendrier', (req, res) => res.render('auth/calendrier'));
 
-
+/// get contact
+router.get('/contact', (req, res) => res.render('auth/contact'));
 module.exports = router; //exporte le dossier

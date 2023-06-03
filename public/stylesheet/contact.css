@@ -1,0 +1,28 @@
+h1 {
+    font-size: 45px;
+    line-height: 45px;
+    color: #5d0d6deb;
+    text-align: center;
+}
+
+#contact_image {
+
+    background-image: url("../images/fonds/Sans-titre-Banniere-paysage.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    border-radius: 300px;
+    height: 75vh;
+    color: #5d0d6deb;
+    padding: 170px;
+    margin-top: 15px;
+}
+
+#contact_titre {
+    font-size: 40px;
+    text-align: center;
+}
+
+#contact_message {
+    font-size: 23px;
+}

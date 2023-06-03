@@ -12,22 +12,18 @@
       </tr>
     </thead>
     <tbody>
-      {{#each products }}
-      <tr class="product">
-        <td class="nomProduit"><span></span>{{nom}}</td>
-        <td class="prix"><span>{{prix}}</span>€</td>
+        <tr class="product">
+        <td class="nomProduit"><span></span>{{product.nomProduit}}</td>
+        <td class="prix"><span>{{product.prixKgOuPiece}}</span>€</td>
         <td class="nbrColis"><span>{{qty}}</span></td>
         <td class="supp">
           <button class="btn supp">➖</button>
           <button class="btn supp">➕</button>
         </td>
       </tr>
-      {{/each}}
+    
 
   </table>
-  <p class="calculate-total">
-    <button id="calculate" class="btn btn-success">total</button>
-  </p>
-  <h2 id="total-value">Total: $<span>0</span></h2>
+  
   <script type="text/javascript" src="./src/index.js"></script>
 </div>

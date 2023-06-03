@@ -1,0 +1,30 @@
+/* 
+**************** calendrier *************** */
+#calendrier_image {
+    background-image: url("../images/fonds/image_2-removebg-preview.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 73%;
+    background-size: cover;
+}
+
+#calendrier_titre {
+    font-size: 45px;
+    text-align: center;
+}
+
+.calendrier table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.calendrier th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #a84f4f;
+}
+
+.calendrier th {
+    background-color: #a84f4f;
+}
