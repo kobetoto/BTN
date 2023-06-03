@@ -1,13 +1,20 @@
+<link rel="stylesheet" href="/stylesheet/userpage.css" />
 {{#if email}}
-  <h1>hello {{email}}</h1>
+<h1>hello {{email}}</h1>
 {{else}}
-  <h1>No user</h1>
+<h1>No user</h1>
 {{/if}}
 
-<h3>Nom de l'entreprise:{{entreprise}}</h3>
-<p>adresse: {{adresse}}</p>
-<p>Ville: {{ville}}</p>
-<p>tel: {{tel}}</p>
-
+<div class="userpage_info">
+  <div class="userpage">
+    <h4>Nom : </h4>
+    <h4>{{entreprise}}</h4>
+    <p>adresse:</p>
+    <p>{{adresse}}</p>
+    <p>Ville:</p>
+    <p> {{ville}}</p>
+    <p>tel: {{tel}}</p>
+  </div>
+  </div>
 <a href="/user/edit">Edit</a>
 <a href="/logout">Deconnexion</a>

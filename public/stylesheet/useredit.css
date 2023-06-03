@@ -1,0 +1,29 @@
+h1 {
+    font-size: 30px;
+    line-height: 30px;
+    color: #5d0d6deb;
+    text-align: center;
+    margin-top: 15px;
+
+}
+
+.useredit_info {
+    background-image: url("../images/fonds/image_2-removebg-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: initial;
+    height: 90vh;
+    width: 70%;
+    color: #5d0d6deb;
+    margin-left: 200px;
+}
+
+.useredit {
+
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
+    left: 350px;
+    top: 122px;
+}

@@ -1,0 +1,26 @@
+h1 {
+    font-size: 30px;
+    line-height: 30px;
+    color: #5d0d6deb;
+    text-align: center;
+    margin-top: 15px;
+
+}
+
+.userpage_info {
+    background-image: url("../images/fonds/MANGUE-removebg-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 115vh;
+    width: 75%;
+    color: #5d0d6deb;
+    margin-left: 150px;
+}
+
+.userpage {
+
+    position: relative;
+    left: 629px;
+    top: 308px;
+}

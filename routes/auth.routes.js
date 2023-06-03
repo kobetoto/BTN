@@ -179,11 +179,11 @@ router.get("/panier", function (req, res, next) {
   // console.log("req.session route POST /panier=====>", req.session.panier[0].id);
 
 
-  res.render("auth/panier", {
-    products: req.session.panier,
-    nomProduit: "toto", //req.session.panier[0].id,
-    qty: req.session.panier[0].qty,
-  })
+  // res.render("auth/panier", {
+  //   products: req.session.panier,
+  //   nomProduit: "toto", //req.session.panier[0].id,
+  //   qty: req.session.panier[0].qty,
+  // })
 })
 
  // GET / fiche produit ID */
